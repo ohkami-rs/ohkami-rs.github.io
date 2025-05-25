@@ -11,12 +11,13 @@ jobs:
 
       - name: build pages
         run: |
-          echo "Building pages..."
-          cp -r ./src ./dist
+          rustup --version
+          cargo --version
+          cargo run
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist/
+          path: ./pages/
 
   deploy:
     runs-on: ubuntu-latest
@@ -25,8 +26,8 @@ jobs:
 
     permissions:
       contents: read
-      pages: write
       id-token: write
+      pages: write
 
     environment:
       name: github-pages
